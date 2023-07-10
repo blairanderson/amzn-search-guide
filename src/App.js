@@ -44,7 +44,7 @@ export default function App() {
   // https://www.amazon.com/s?k=nitrile+gloves&rh=p_85:2470955011,p_89:SAS Safety&dc&rnid=2470954011
   return (
     <div>
-      <div className="container">
+      <div className="container border-bottom ">
         <h1 className="display-1">Amazon Search Guide</h1>
         <h2>Start editing to see some magic happen!</h2>
         <div className="row">
@@ -116,7 +116,18 @@ export default function App() {
           </li>
         </ul>
       </div>
-      <footer className="p-5 text-center">Made by Blair Anderson</footer>
+
+      <footer className="py-5 my-4">
+        <p className="text-center text-body-secondary">
+          <div className="">© 2023 Blair Anderson</div>
+          <a
+            className="nav-link px-2 text-body-secondary"
+            href="https://www.andersonassociates.net"
+          >
+            Amazon Agency Consultant
+          </a>
+        </p>
+      </footer>
     </div>
   );
 }
