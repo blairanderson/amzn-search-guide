@@ -3,7 +3,7 @@ import React from "react";
 
 const SEED_DATA = {
   "Nitrile Gloves": "NITRILECARE",
-  "Caution Tape": "Cordova"
+  "Caution Tape": "Cordova",
 };
 
 function RandomSeedKey() {
@@ -38,12 +38,12 @@ export default function App() {
 
   const finalLink = `https://amazon.com/s?${new URLSearchParams({
     ...params,
-    ref: "cheese"
+    ref: "cheese",
   }).toString()}`;
 
   // https://www.amazon.com/s?k=nitrile+gloves&rh=p_85:2470955011,p_89:SAS Safety&dc&rnid=2470954011
   return (
-    <div>
+    <div className="container">
       <h1 className="display-1">Amazon Search Guide</h1>
       <h2>Start editing to see some magic happen!</h2>
       <div className="row">
