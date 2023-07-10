@@ -122,7 +122,7 @@ export default function App() {
           <div className="">© 2023 Blair Anderson</div>
           <a
             className="nav-link px-2 text-body-secondary"
-            href="https://www.andersonassociates.net"
+            href="https://www.andersonassociates.net?ref=amazonsearchguide"
           >
             Amazon Agency Consultant
           </a>
