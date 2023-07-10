@@ -38,79 +38,85 @@ export default function App() {
 
   const finalLink = `https://amazon.com/s?${new URLSearchParams({
     ...params,
-    ref: "cheese",
+    ref: "shipmentbot-20",
   }).toString()}`;
 
   // https://www.amazon.com/s?k=nitrile+gloves&rh=p_85:2470955011,p_89:SAS Safety&dc&rnid=2470954011
   return (
-    <div className="container">
-      <h1 className="display-1">Amazon Search Guide</h1>
-      <h2>Start editing to see some magic happen!</h2>
-      <div className="row">
-        <div className="col-sm-12 col-md-5">
-          <dl>
-            <dt>Sort By</dt>
-            <dd>
-              <select
-                onChange={(e) => {
-                  updateSort(e.target.value);
-                }}
-                value={sort}
-                className="form-select"
-              >
-                <option value="exact-aware-popularity-rank">
-                  Best Sellers
-                </option>
-                <option value="relevanceblender">Featured</option>
-                <option value="price-desc-rank">Price: High to Low</option>
-                <option value="price-asc-rank">Price: Low to High</option>
-              </select>
-            </dd>
-            <dt>Query Keywords</dt>
-            <dd>
-              <InputButton value={keywords} onChange={updateKeywords} />
-            </dd>
-            <dt>Brand Name</dt>
-            <dd>
-              <InputButton value={brand} onChange={updateBrand} />
-            </dd>
-            <dt>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={prime}
+    <div>
+      <div className="container">
+        <h1 className="display-1">Amazon Search Guide</h1>
+        <h2>Start editing to see some magic happen!</h2>
+        <div className="row">
+          <div className="col-sm-12 col-md-5">
+            <dl>
+              <dt>Sort By</dt>
+              <dd>
+                <select
                   onChange={(e) => {
-                    updatePrime(!prime);
+                    updateSort(e.target.value);
                   }}
-                  id="flexCheckDefault"
-                />
-                <label className="form-check-label" htmlFor="flexCheckDefault">
-                  Prime Shipping Only
-                </label>
-              </div>
-            </dt>
-            <dd></dd>
-          </dl>
+                  value={sort}
+                  className="form-select"
+                >
+                  <option value="exact-aware-popularity-rank">
+                    Best Sellers
+                  </option>
+                  <option value="relevanceblender">Featured</option>
+                  <option value="price-desc-rank">Price: High to Low</option>
+                  <option value="price-asc-rank">Price: Low to High</option>
+                </select>
+              </dd>
+              <dt>Query Keywords</dt>
+              <dd>
+                <InputButton value={keywords} onChange={updateKeywords} />
+              </dd>
+              <dt>Brand Name</dt>
+              <dd>
+                <InputButton value={brand} onChange={updateBrand} />
+              </dd>
+              <dt>
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    checked={prime}
+                    onChange={(e) => {
+                      updatePrime(!prime);
+                    }}
+                    id="flexCheckDefault"
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexCheckDefault"
+                  >
+                    Prime Shipping Only
+                  </label>
+                </div>
+              </dt>
+              <dd></dd>
+            </dl>
+          </div>
+          <div className="col-sm-12 col-md-7">
+            <p className="lead">Your Search On Amazon:</p>
+            <PrettyOutputLink {...{ finalLink, params, brand, keywords }} />
+          </div>
         </div>
-        <div className="col-sm-12 col-md-7">
-          <p className="lead">Your Search On Amazon:</p>
-          <PrettyOutputLink {...{ finalLink, params, brand, keywords }} />
-        </div>
+        <p className="lead">Why is this useful?</p>
+        <ul>
+          <li>
+            You can see the best-sellers natively on Amazon for a given brand
+          </li>
+          <li>Results mostly exclude ads</li>
+          <li>Sometimes Amazon hides checkbox for "Prime"</li>
+          <li>Sometimes Amazon hides Brand Selection</li>
+          <li>
+            Amazon default sort is not helpful "Featured"... we sort by
+            best-selling first.
+          </li>
+        </ul>
       </div>
-      <p className="lead">Why is this useful?</p>
-      <ul>
-        <li>
-          You can see the best-sellers natively on Amazon for a given brand
-        </li>
-        <li>Results mostly exclude ads</li>
-        <li>Sometimes Amazon hides checkbox for "Prime"</li>
-        <li>Sometimes Amazon hides Brand Selection</li>
-        <li>
-          Amazon default sort is not helpful "Featured"... we sort by
-          best-selling first.
-        </li>
-      </ul>
+      <footer className="p-5 text-center">Made by Blair Anderson</footer>
     </div>
   );
 }
