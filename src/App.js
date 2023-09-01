@@ -1,5 +1,6 @@
 import "./styles.css";
-import React from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const SEED_DATA = {
   "Phone Case": "Apple",
@@ -14,13 +15,28 @@ function RandomSeedKey() {
 }
 
 export default function App() {
+  const params = {};
+  const navigate = useNavigate();
+  const location = useLocation();
   const startingSearch = RandomSeedKey();
   const startingBrand = SEED_DATA[startingSearch];
-  const params = {};
-  const [sort, updateSort] = React.useState("exact-aware-popularity-rank");
-  const [prime, updatePrime] = React.useState(true);
-  const [brand, updateBrand] = React.useState(startingBrand);
-  const [keywords, updateKeywords] = React.useState(startingSearch);
+  const [sort, updateSort] = useState("exact-aware-popularity-rank");
+  const [prime, updatePrime] = useState(true);
+
+  const urlParams = new URLSearchParams(location.search);
+  const initialKeywords = urlParams.get("keyword") || startingSearch;
+  const initialBrand = urlParams.get("brand") || startingBrand;
+
+  const [keywords, updateKeywords] = useState(initialKeywords);
+  const [brand, updateBrand] = useState(initialBrand);
+
+  useEffect(() => {
+    let queryParts = [];
+    if (keywords) queryParts.push(`keyword=${keywords}`);
+    if (brand) queryParts.push(`brand=${brand}`);
+    const queryString = queryParts.length ? `?${queryParts.join("&")}` : "";
+    navigate(`${location.pathname}${queryString}`, { replace: true });
+  }, [keywords, brand, location.pathname, navigate]);
 
   if (keywords.toString().length > 0) {
     params["k"] = keywords;
@@ -110,7 +126,7 @@ export default function App() {
                 </div>
               </dt>
               <dt>
-                <button className="btn btn-outline-warning">
+                <button className="btn btn-warning text-light btn-lg ">
                   Search On Amazon.com
                 </button>
               </dt>
