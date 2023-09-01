@@ -2,8 +2,9 @@ import "./styles.css";
 import React from "react";
 
 const SEED_DATA = {
+  "Phone Case": "Apple",
   "Nitrile Gloves": "NITRILECARE",
-  "Caution Tape": "Cordova",
+  "Caution Tape": "Cordova"
 };
 
 function RandomSeedKey() {
@@ -38,17 +39,21 @@ export default function App() {
 
   const finalLink = `https://amazon.com/s?${new URLSearchParams({
     ...params,
-    ref: "shipmentbot-20",
+    ref: "shipmentbot-20"
   }).toString()}`;
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    window.open(finalLink, "_blank");
+  };
 
   // https://www.amazon.com/s?k=nitrile+gloves&rh=p_85:2470955011,p_89:SAS Safety&dc&rnid=2470954011
   return (
     <div>
       <div className="container border-bottom ">
-        <h1 className="display-1">Amazon Search Guide</h1>
-        <h2>Start editing to see some magic happen!</h2>
+        <h1 className="display-5">Amazon Search ShortCuts</h1>
         <div className="row">
-          <div className="col-sm-12 col-md-5">
+          <form onSubmit={onSubmit} className="col-sm-12 col-md-5">
             <dl>
               <dt>Sort By</dt>
               <dd>
@@ -94,9 +99,13 @@ export default function App() {
                   </label>
                 </div>
               </dt>
-              <dd></dd>
+              <dt>
+                <button className="btn btn-outline-warning">
+                  Search On Amazon.com
+                </button>
+              </dt>
             </dl>
-          </div>
+          </form>
           <div className="col-sm-12 col-md-7">
             <p className="lead">Your Search On Amazon:</p>
             <PrettyOutputLink {...{ finalLink, params, brand, keywords }} />
@@ -118,15 +127,18 @@ export default function App() {
       </div>
 
       <footer className="py-5 my-4">
-        <p className="text-center text-body-secondary">
+        <div className="text-center text-body-secondary">
           <div className="">© 2023 Blair Anderson</div>
           <a
             className="nav-link px-2 text-body-secondary"
             href="https://www.andersonassociates.net?ref=amazonsearchguide"
           >
-            Amazon Agency Consultant
+            Full-Service Amazon Sales Agency
           </a>
-        </p>
+          <small>
+            As an Amazon Associate I earn from qualifying purchases.
+          </small>
+        </div>
       </footer>
     </div>
   );
