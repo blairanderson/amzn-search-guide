@@ -51,7 +51,9 @@ export default function App() {
   return (
     <div>
       <div className="container border-bottom ">
-        <h1 className="display-5">Amazon Search ShortCuts</h1>
+        <a className="text-dark bold text-decoration-none" href="/">
+          <h1 className="display-5">Amazon Search ShortCuts</h1>
+        </a>
 
         <a
           className="nav-link px-2 text-body-secondary"
