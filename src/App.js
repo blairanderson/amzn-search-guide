@@ -52,6 +52,14 @@ export default function App() {
     <div>
       <div className="container border-bottom ">
         <h1 className="display-5">Amazon Search ShortCuts</h1>
+
+        <a
+          className="nav-link px-2 text-body-secondary"
+          href="https://github.com/blairanderson/amzn-search-guide"
+        >
+          Open Source - See the Code
+        </a>
+
         <div className="row">
           <form onSubmit={onSubmit} className="col-sm-12 col-md-5">
             <dl>
@@ -135,6 +143,7 @@ export default function App() {
           >
             Full-Service Amazon Sales Agency
           </a>
+
           <small>
             As an Amazon Associate I earn from qualifying purchases.
           </small>
